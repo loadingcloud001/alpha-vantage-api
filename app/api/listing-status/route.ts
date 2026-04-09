@@ -8,6 +8,10 @@ const config = {
   requiredColumns: ["symbol", "status"],
 };
 
+if (!config.apiKey) {
+  throw new Error("ALPHA_VANTAGE_LISTING_KEY environment variable is not set");
+}
+
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {

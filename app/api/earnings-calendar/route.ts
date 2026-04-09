@@ -9,6 +9,10 @@ const config: UpstreamConfig = {
   defaultParams: { horizon: "3month" },
 };
 
+if (!config.apiKey) {
+  throw new Error("ALPHA_VANTAGE_EARNINGS_KEY environment variable is not set");
+}
+
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
@@ -24,9 +28,11 @@ export async function GET(request: Request) {
   const result = await fetchAlphaVantage(config, params);
 
   if (result.error) {
+    const errorHeaders = new Headers();
+    errorHeaders.set("Access-Control-Allow-Origin", "*");
     return NextResponse.json(
       { error: result.error, raw: result.raw },
-      { status: result.status }
+      { status: result.status, headers: errorHeaders }
     );
   }
 
