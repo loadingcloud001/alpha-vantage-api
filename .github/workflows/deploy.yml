@@ -47,6 +47,13 @@ jobs:
             set -e
             cd /opt/loading-alphavantage
 
+            echo "=== Writing environment variables ==="
+            cat > .env << 'ENVEOF'
+ALPHA_VANTAGE_EARNINGS_KEY=${{ secrets.ALPHA_VANTAGE_EARNINGS_KEY }}
+ALPHA_VANTAGE_LISTING_KEY=${{ secrets.ALPHA_VANTAGE_LISTING_KEY }}
+ALPHA_VANTAGE_IPO_KEY=${{ secrets.ALPHA_VANTAGE_IPO_KEY }}
+ENVEOF
+
             echo "=== Installing dependencies ==="
             npm install
 
