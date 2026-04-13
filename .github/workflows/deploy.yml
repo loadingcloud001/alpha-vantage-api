@@ -38,11 +38,17 @@ jobs:
           ENDSSH
 
           echo "=== Copying files to droplet ==="
-          scp -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no \
-            Dockerfile docker-compose.yml next.config.js \
-            package.json package-lock.json \
-            app/ \
-            public/ 2>/dev/null \
+          rsync -az -e "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+            --include='Dockerfile' \
+            --include='docker-compose.yml' \
+            --include='next.config.ts' \
+            --include='package.json' \
+            --include='package-lock.json' \
+            --include='app/' \
+            --include='lib/' \
+            --include='public/' \
+            --exclude='*' \
+            ./ \
             root@${{ secrets.SSH_HOST }}:/opt/loading-alphavantage/
 
           echo "=== Building and starting container ==="
