@@ -29,57 +29,50 @@ jobs:
             echo "=== Creating deployment directory ==="
             mkdir -p /opt/loading-alphavantage
 
-            echo "=== Stopping existing container ==="
-            cd /opt/loading-alphavantage
-            docker-compose down 2>/dev/null || true
-
-            echo "=== Cleaning old image ==="
-            docker rmi alpha-vantage-api:latest 2>/dev/null || true
+            echo "=== Stopping existing PM2 process ==="
+            pm2 stop loading-alphavantage 2>/dev/null || true
+            pm2 delete loading-alphavantage 2>/dev/null || true
           ENDSSH
 
           echo "=== Copying files to droplet ==="
           rsync -az -e "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
-            --include='Dockerfile' \
-            --include='docker-compose.yml' \
-            --include='next.config.ts' \
-            --include='package.json' \
-            --include='package-lock.json' \
-            --include='app/' \
-            --include='lib/' \
-            --include='public/' \
-            --exclude='*' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
             ./ \
             root@${{ secrets.SSH_HOST }}:/opt/loading-alphavantage/
 
-          echo "=== Building and starting container ==="
+          echo "=== Installing dependencies and building ==="
           ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@${{ secrets.SSH_HOST }} << 'ENDSSH'
             set -e
             cd /opt/loading-alphavantage
 
-            echo "=== Building Docker image (this may take a few minutes) ==="
-            docker build -t alpha-vantage-api:latest .
+            echo "=== Installing dependencies ==="
+            npm install
 
-            echo "=== Starting service ==="
-            docker-compose up -d
+            echo "=== Building Next.js app ==="
+            npm run build
 
-            echo "=== Container Status ==="
-            docker-compose ps
+            echo "=== Starting with PM2 ==="
+            pm2 start npm --name "loading-alphavantage" -- start
+
+            echo "=== Saving PM2 state ==="
+            pm2 save
+
+            echo "=== PM2 Status ==="
+            pm2 list
           ENDSSH
 
       - name: Verify deployment
         run: |
           ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@${{ secrets.SSH_HOST }} << 'ENDSSH'
-            echo "=== Waiting for container to start ==="
-            sleep 15
+            echo "=== Waiting for app to start ==="
+            sleep 10
 
-            echo "=== Container Status ==="
-            docker ps --filter name=loading-alphavantage
+            echo "=== PM2 Status ==="
+            pm2 list
 
             echo ""
             echo "=== Health Check ==="
-            curl -s http://localhost:3000/api/health || echo "Health check endpoint not responding"
-
-            echo ""
-            echo "=== Container Logs (last 20 lines) ==="
-            docker logs --tail 20 loading-alphavantage 2>&1
+            curl -s http://localhost:3000/api/health || echo "Health check failed or app not responding"
           ENDSSH
