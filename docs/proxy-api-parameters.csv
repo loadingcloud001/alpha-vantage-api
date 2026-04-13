@@ -1,0 +1,436 @@
+Title,Parameter,Value,Required,Description
+Alpha Intelligence-EARNINGS_ESTIMATES,function,EARNINGS_ESTIMATES,Yes,API function name
+Alpha Intelligence-EARNINGS_ESTIMATES,symbol,AAPL,No,Stock symbol (optional)
+Alpha Intelligence-EARNINGS_ESTIMATES,apikey,DEMO,No,API key (handled by proxy)
+Alpha Intelligence-ETF_PROFILE,function,ETF_PROFILE,Yes,API function name
+Alpha Intelligence-ETF_PROFILE,symbol,QQQ,Yes,ETF symbol
+Alpha Intelligence-ETF_PROFILE,apikey,DEMO,No,API key (handled by proxy)
+Alpha Intelligence-INSIDER_TRANSACTIONS,function,INSIDER_TRANSACTIONS,Yes,API function name
+Alpha Intelligence-INSIDER_TRANSACTIONS,symbol,AAPL,Yes,Stock symbol
+Alpha Intelligence-INSIDER_TRANSACTIONS,apikey,DEMO,No,API key (handled by proxy)
+Alpha Intelligence-INSTITUTIONAL_HOLDINGS,function,INSTITUTIONAL_HOLDINGS,Yes,API function name
+Alpha Intelligence-INSTITUTIONAL_HOLDINGS,symbol,AAPL,Yes,Stock symbol
+Alpha Intelligence-INSTITUTIONAL_HOLDINGS,apikey,DEMO,No,API key (handled by proxy)
+Alpha Intelligence-NEWS_SENTIMENT,function,NEWS_SENTIMENT,Yes,API function name
+Alpha Intelligence-NEWS_SENTIMENT,tickers,AAPL,No,Comma-separated tickers (e.g., AAPL,GOOGL)
+Alpha Intelligence-NEWS_SENTIMENT,apikey,DEMO,No,API key (handled by proxy)
+Core Stock APIs-GLOBAL_QUOTE,function,GLOBAL_QUOTE,Yes,API function name
+Core Stock APIs-GLOBAL_QUOTE,symbol,AAPL,Yes,Stock symbol
+Core Stock APIs-GLOBAL_QUOTE,datatype,json,No,json or csv (default: json)
+Core Stock APIs-GLOBAL_QUOTE,apikey,DEMO,No,API key (handled by proxy)
+Core Stock APIs-SYMBOL_SEARCH,function,SYMBOL_SEARCH,Yes,API function name
+Core Stock APIs-SYMBOL_SEARCH,keywords,IBM,Yes,Search keywords
+Core Stock APIs-SYMBOL_SEARCH,datatype,json,No,json or csv (default: json)
+Core Stock APIs-SYMBOL_SEARCH,apikey,DEMO,No,API key (handled by proxy)
+Core Stock APIs-TIME_SERIES_DAILY,function,TIME_SERIES_DAILY,Yes,API function name
+Core Stock APIs-TIME_SERIES_DAILY,symbol,AAPL,Yes,Stock symbol
+Core Stock APIs-TIME_SERIES_DAILY,outputsize,compact,No,compact or full (default: compact)
+Core Stock APIs-TIME_SERIES_DAILY,datatype,json,No,json or csv (default: json)
+Core Stock APIs-TIME_SERIES_DAILY,apikey,DEMO,No,API key (handled by proxy)
+Core Stock APIs-TIME_SERIES_WEEKLY,function,TIME_SERIES_WEEKLY,Yes,API function name
+Core Stock APIs-TIME_SERIES_WEEKLY,symbol,AAPL,Yes,Stock symbol
+Core Stock APIs-TIME_SERIES_WEEKLY,datatype,json,No,json or csv (default: json)
+Core Stock APIs-TIME_SERIES_WEEKLY,apikey,DEMO,No,API key (handled by proxy)
+Core Stock APIs-TIME_SERIES_MONTHLY,function,TIME_SERIES_MONTHLY,Yes,API function name
+Core Stock APIs-TIME_SERIES_MONTHLY,symbol,AAPL,Yes,Stock symbol
+Core Stock APIs-TIME_SERIES_MONTHLY,datatype,json,No,json or csv (default: json)
+Core Stock APIs-TIME_SERIES_MONTHLY,apikey,DEMO,No,API key (handled by proxy)
+Core Stock APIs-MARKET_STATUS,function,MARKET_STATUS,Yes,API function name
+Core Stock APIs-MARKET_STATUS,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-CPI,function,CPI,Yes,API function name
+Economic Indicators-CPI,interval,monthly,No,monthly or semiannual (default: monthly)
+Economic Indicators-CPI,datatype,json,No,json or csv (default: json)
+Economic Indicators-CPI,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-DURABLES,function,DURABLES,Yes,API function name
+Economic Indicators-DURABLES,datatype,json,No,json or csv (default: json)
+Economic Indicators-DURABLES,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-FEDERAL_FUNDS_RATE,function,FEDERAL_FUNDS_RATE,Yes,API function name
+Economic Indicators-FEDERAL_FUNDS_RATE,interval,monthly,No,daily, weekly, or monthly (default: monthly)
+Economic Indicators-FEDERAL_FUNDS_RATE,datatype,json,No,json or csv (default: json)
+Economic Indicators-FEDERAL_FUNDS_RATE,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-INFLATION,function,INFLATION,Yes,API function name
+Economic Indicators-INFLATION,datatype,json,No,json or csv (default: json)
+Economic Indicators-INFLATION,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-NONFARM_PAYROLL,function,NONFARM_PAYROLL,Yes,API function name
+Economic Indicators-NONFARM_PAYROLL,datatype,json,No,json or csv (default: json)
+Economic Indicators-NONFARM_PAYROLL,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-REAL_GDP,function,REAL_GDP,Yes,API function name
+Economic Indicators-REAL_GDP,interval,annual,No,quarterly or annual (default: annual)
+Economic Indicators-REAL_GDP,datatype,json,No,json or csv (default: json)
+Economic Indicators-REAL_GDP,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-REAL_GDP_PER_CAPITA,function,REAL_GDP_PER_CAPITA,Yes,API function name
+Economic Indicators-REAL_GDP_PER_CAPITA,interval,annual,No,quarterly or annual (default: annual)
+Economic Indicators-REAL_GDP_PER_CAPITA,datatype,json,No,json or csv (default: json)
+Economic Indicators-REAL_GDP_PER_CAPITA,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-RETAIL_SALES,function,RETAIL_SALES,Yes,API function name
+Economic Indicators-RETAIL_SALES,datatype,json,No,json or csv (default: json)
+Economic Indicators-RETAIL_SALES,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-TREASURY_YIELD,function,TREASURY_YIELD,Yes,API function name
+Economic Indicators-TREASURY_YIELD,interval,monthly,No,daily, weekly, or monthly (default: monthly)
+Economic Indicators-TREASURY_YIELD,datatype,json,No,json or csv (default: json)
+Economic Indicators-TREASURY_YIELD,apikey,DEMO,No,API key (handled by proxy)
+Economic Indicators-UNEMPLOYMENT,function,UNEMPLOYMENT,Yes,API function name
+Economic Indicators-UNEMPLOYMENT,datatype,json,No,json or csv (default: json)
+Economic Indicators-UNEMPLOYMENT,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-BALANCE_SHEET,function,BALANCE_SHEET,Yes,API function name
+Fundamental Data-BALANCE_SHEET,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-BALANCE_SHEET,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-CASH_FLOW,function,CASH_FLOW,Yes,API function name
+Fundamental Data-CASH_FLOW,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-CASH_FLOW,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-DIVIDENDS,function,DIVIDENDS,Yes,API function name
+Fundamental Data-DIVIDENDS,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-DIVIDENDS,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-EARNINGS,function,EARNINGS,Yes,API function name
+Fundamental Data-EARNINGS,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-EARNINGS,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-INCOME_STATEMENT,function,INCOME_STATEMENT,Yes,API function name
+Fundamental Data-INCOME_STATEMENT,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-INCOME_STATEMENT,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-OVERVIEW,function,OVERVIEW,Yes,API function name
+Fundamental Data-OVERVIEW,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-OVERVIEW,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-SHARES_OUTSTANDING,function,SHARES_OUTSTANDING,Yes,API function name
+Fundamental Data-SHARES_OUTSTANDING,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-SHARES_OUTSTANDING,apikey,DEMO,No,API key (handled by proxy)
+Fundamental Data-SPLITS,function,SPLITS,Yes,API function name
+Fundamental Data-SPLITS,symbol,AAPL,Yes,Stock symbol
+Fundamental Data-SPLITS,apikey,DEMO,No,API key (handled by proxy)
+Index Data-INDEX_CATALOG,function,INDEX_CATALOG,Yes,API function name
+Index Data-INDEX_CATALOG,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-AD,function,AD,Yes,API function name (Chaikin A/D Line)
+Technical Indicators-AD,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-AD,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-AD,datatype,json,No,json or csv (default: json)
+Technical Indicators-AD,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ADOSC,function,ADOSC,Yes,API function name (A/D Oscillator)
+Technical Indicators-ADOSC,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ADOSC,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ADOSC,fastkperiod,5,No,Fast K period (default: 5)
+Technical Indicators-ADOSC,fastdperiod,3,No,Fast D period (default: 3)
+Technical Indicators-ADOSC,fastdmatype,0,No,Moving average type 0-8 (default: 0)
+Technical Indicators-ADOSC,datatype,json,No,json or csv (default: json)
+Technical Indicators-ADOSC,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ADX,function,ADX,Yes,API function name (Average Directional Movement Index)
+Technical Indicators-ADX,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ADX,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ADX,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-ADX,datatype,json,No,json or csv (default: json)
+Technical Indicators-ADX,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ADXR,function,ADXR,Yes,API function name (Average Directional Movement Index Rating)
+Technical Indicators-ADXR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ADXR,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ADXR,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-ADXR,datatype,json,No,json or csv (default: json)
+Technical Indicators-ADXR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-APO,function,APO,Yes,API function name (Absolute Price Oscillator)
+Technical Indicators-APO,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-APO,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-APO,series_type,close,Yes,close, open, high, low
+Technical Indicators-APO,fastperiod,12,No,Fast period (default: 12)
+Technical Indicators-APO,slowperiod,26,No,Slow period (default: 26)
+Technical Indicators-APO,matype,0,No,Moving average type 0-8 (default: 0)
+Technical Indicators-APO,datatype,json,No,json or csv (default: json)
+Technical Indicators-APO,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-AROON,function,AROON,Yes,API function name
+Technical Indicators-AROON,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-AROON,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-AROON,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-AROON,datatype,json,No,json or csv (default: json)
+Technical Indicators-AROON,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-AROONOSC,function,AROONOSC,Yes,API function name (Aroon Oscillator)
+Technical Indicators-AROONOSC,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-AROONOSC,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-AROONOSC,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-AROONOSC,datatype,json,No,json or csv (default: json)
+Technical Indicators-AROONOSC,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ATR,function,ATR,Yes,API function name (Average True Range)
+Technical Indicators-ATR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ATR,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ATR,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-ATR,datatype,json,No,json or csv (default: json)
+Technical Indicators-ATR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-BBANDS,function,BBANDS,Yes,API function name (Bollinger Bands)
+Technical Indicators-BBANDS,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-BBANDS,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-BBANDS,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-BBANDS,series_type,close,Yes,close, open, high, low
+Technical Indicators-BBANDS,nbdevup,2,No,Standard deviations up (default: 2)
+Technical Indicators-BBANDS,nbdevdn,2,No,Standard deviations down (default: 2)
+Technical Indicators-BBANDS,matype,0,No,Moving average type 0-8 (default: 0)
+Technical Indicators-BBANDS,datatype,json,No,json or csv (default: json)
+Technical Indicators-BBANDS,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-BOP,function,BOP,Yes,API function name (Balance of Power)
+Technical Indicators-BOP,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-BOP,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-BOP,datatype,json,No,json or csv (default: json)
+Technical Indicators-BOP,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-CCI,function,CCI,Yes,API function name (Commodity Channel Index)
+Technical Indicators-CCI,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-CCI,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-CCI,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-CCI,datatype,json,No,json or csv (default: json)
+Technical Indicators-CCI,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-CMO,function,CMO,Yes,API function name (Chande Momentum Oscillator)
+Technical Indicators-CMO,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-CMO,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-CMO,series_type,close,Yes,close, open, high, low
+Technical Indicators-CMO,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-CMO,datatype,json,No,json or csv (default: json)
+Technical Indicators-CMO,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-DEMA,function,DEMA,Yes,API function name (Double Exponential Moving Average)
+Technical Indicators-DEMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-DEMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-DEMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-DEMA,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-DEMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-DEMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-DX,function,DX,Yes,API function name (Directional Movement Index)
+Technical Indicators-DX,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-DX,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-DX,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-DX,datatype,json,No,json or csv (default: json)
+Technical Indicators-DX,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-EMA,function,EMA,Yes,API function name (Exponential Moving Average)
+Technical Indicators-EMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-EMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-EMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-EMA,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-EMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-EMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-HT_DCPERIOD,function,HT_DCPERIOD,Yes,API function name (Hilbert Transform - Dominant Cycle Period)
+Technical Indicators-HT_DCPERIOD,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-HT_DCPERIOD,interval,daily,Yes,daily (required for HT functions)
+Technical Indicators-HT_DCPERIOD,series_type,close,Yes,close (required for HT functions)
+Technical Indicators-HT_DCPERIOD,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-HT_DCPHASE,function,HT_DCPHASE,Yes,API function name (Hilbert Transform - Dominant Cycle Phase)
+Technical Indicators-HT_DCPHASE,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-HT_DCPHASE,interval,daily,Yes,daily (required for HT functions)
+Technical Indicators-HT_DCPHASE,series_type,close,Yes,close (required for HT functions)
+Technical Indicators-HT_DCPHASE,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-HT_PHASOR,function,HT_PHASOR,Yes,API function name (Hilbert Transform - Phasor Components)
+Technical Indicators-HT_PHASOR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-HT_PHASOR,interval,daily,Yes,daily (required for HT functions)
+Technical Indicators-HT_PHASOR,series_type,close,Yes,close (required for HT functions)
+Technical Indicators-HT_PHASOR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-HT_SINE,function,HT_SINE,Yes,API function name (Hilbert Transform - Sine Wave)
+Technical Indicators-HT_SINE,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-HT_SINE,interval,daily,Yes,daily (required for HT functions)
+Technical Indicators-HT_SINE,series_type,close,Yes,close (required for HT functions)
+Technical Indicators-HT_SINE,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-HT_TRENDLINE,function,HT_TRENDLINE,Yes,API function name (Hilbert Transform - Instantaneous Trendline)
+Technical Indicators-HT_TRENDLINE,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-HT_TRENDLINE,interval,daily,Yes,daily (required for HT functions)
+Technical Indicators-HT_TRENDLINE,series_type,close,Yes,close (required for HT functions)
+Technical Indicators-HT_TRENDLINE,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-HT_TRENDMODE,function,HT_TRENDMODE,Yes,API function name (Hilbert Transform - Trend vs Mode)
+Technical Indicators-HT_TRENDMODE,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-HT_TRENDMODE,interval,daily,Yes,daily (required for HT functions)
+Technical Indicators-HT_TRENDMODE,series_type,close,Yes,close (required for HT functions)
+Technical Indicators-HT_TRENDMODE,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-KAMA,function,KAMA,Yes,API function name (Kaufman Adaptive Moving Average)
+Technical Indicators-KAMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-KAMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-KAMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-KAMA,time_period,10,Yes,Number of data points (e.g., 10)
+Technical Indicators-KAMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-KAMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MACDEXT,function,MACDEXT,Yes,API function name (MACD with Controllable MA Type)
+Technical Indicators-MACDEXT,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MACDEXT,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-MACDEXT,series_type,close,Yes,close, open, high, low
+Technical Indicators-MACDEXT,fastperiod,12,No,Fast period (default: 12)
+Technical Indicators-MACDEXT,fastmatype,0,No,Fast MA type 0-8 (default: 0)
+Technical Indicators-MACDEXT,slowperiod,26,No,Slow period (default: 26)
+Technical Indicators-MACDEXT,slowmatype,0,No,Slow MA type 0-8 (default: 0)
+Technical Indicators-MACDEXT,signalperiod,9,No,Signal period (default: 9)
+Technical Indicators-MACDEXT,signalmatype,0,No,Signal MA type 0-8 (default: 0)
+Technical Indicators-MACDEXT,datatype,json,No,json or csv (default: json)
+Technical Indicators-MACDEXT,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MAMA,function,MAMA,Yes,API function name (MESA Adaptive Moving Average)
+Technical Indicators-MAMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MAMA,interval,daily,Yes,daily (required for MAMA)
+Technical Indicators-MAMA,series_type,close,Yes,close
+Technical Indicators-MAMA,fastlimit,0,No,Fast limit (default: 0)
+Technical Indicators-MAMA,slowlimit,0,No,Slow limit (default: 0)
+Technical Indicators-MAMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-MAMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MFI,function,MFI,Yes,API function name (Money Flow Index)
+Technical Indicators-MFI,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MFI,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-MFI,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-MFI,datatype,json,No,json or csv (default: json)
+Technical Indicators-MFI,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MIDPOINT,function,MIDPOINT,Yes,API function name (MidPoint over period)
+Technical Indicators-MIDPOINT,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MIDPOINT,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-MIDPOINT,series_type,close,Yes,close, open, high, low
+Technical Indicators-MIDPOINT,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-MIDPOINT,datatype,json,No,json or csv (default: json)
+Technical Indicators-MIDPOINT,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MIDPRICE,function,MIDPRICE,Yes,API function name (Midpoint Price over period)
+Technical Indicators-MIDPRICE,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MIDPRICE,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-MIDPRICE,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-MIDPRICE,datatype,json,No,json or csv (default: json)
+Technical Indicators-MIDPRICE,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MINUS_DI,function,MINUS_DI,Yes,API function name (Minus Directional Indicator)
+Technical Indicators-MINUS_DI,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MINUS_DI,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-MINUS_DI,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-MINUS_DI,datatype,json,No,json or csv (default: json)
+Technical Indicators-MINUS_DI,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-MOM,function,MOM,Yes,API function name (Momentum)
+Technical Indicators-MOM,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-MOM,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-MOM,series_type,close,Yes,close, open, high, low
+Technical Indicators-MOM,time_period,10,Yes,Number of data points (e.g., 10)
+Technical Indicators-MOM,datatype,json,No,json or csv (default: json)
+Technical Indicators-MOM,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-NATR,function,NATR,Yes,API function name (Normalized Average True Range)
+Technical Indicators-NATR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-NATR,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-NATR,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-NATR,datatype,json,No,json or csv (default: json)
+Technical Indicators-NATR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-OBV,function,OBV,Yes,API function name (On Balance Volume)
+Technical Indicators-OBV,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-OBV,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-OBV,datatype,json,No,json or csv (default: json)
+Technical Indicators-OBV,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-PLUS_DI,function,PLUS_DI,Yes,API function name (Plus Directional Indicator)
+Technical Indicators-PLUS_DI,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-PLUS_DI,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-PLUS_DI,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-PLUS_DI,datatype,json,No,json or csv (default: json)
+Technical Indicators-PLUS_DI,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-PPO,function,PPO,Yes,API function name (Percentage Price Oscillator)
+Technical Indicators-PPO,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-PPO,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-PPO,series_type,close,Yes,close, open, high, low
+Technical Indicators-PPO,matype,0,No,Moving average type 0-8 (default: 0)
+Technical Indicators-PPO,fastperiod,12,No,Fast period (default: 12)
+Technical Indicators-PPO,slowperiod,26,No,Slow period (default: 26)
+Technical Indicators-PPO,datatype,json,No,json or csv (default: json)
+Technical Indicators-PPO,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ROC,function,ROC,Yes,API function name (Rate of Change)
+Technical Indicators-ROC,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ROC,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ROC,series_type,close,Yes,close, open, high, low
+Technical Indicators-ROC,time_period,10,Yes,Number of data points (e.g., 10)
+Technical Indicators-ROC,datatype,json,No,json or csv (default: json)
+Technical Indicators-ROC,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ROCR,function,ROCR,Yes,API function name (Rate of Change Ratio)
+Technical Indicators-ROCR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ROCR,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ROCR,series_type,close,Yes,close, open, high, low
+Technical Indicators-ROCR,time_period,10,Yes,Number of data points (e.g., 10)
+Technical Indicators-ROCR,datatype,json,No,json or csv (default: json)
+Technical Indicators-ROCR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-RSI,function,RSI,Yes,API function name (Relative Strength Index)
+Technical Indicators-RSI,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-RSI,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-RSI,series_type,close,Yes,close, open, high, low
+Technical Indicators-RSI,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-RSI,datatype,json,No,json or csv (default: json)
+Technical Indicators-RSI,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-SAR,function,SAR,Yes,API function name (Parabolic SAR)
+Technical Indicators-SAR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-SAR,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-SAR,acceleration,0.02,No,Acceleration factor (default: 0.02)
+Technical Indicators-SAR,maximum,0.2,No,Maximum value (default: 0.2)
+Technical Indicators-SAR,datatype,json,No,json or csv (default: json)
+Technical Indicators-SAR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-SMA,function,SMA,Yes,API function name (Simple Moving Average)
+Technical Indicators-SMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-SMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-SMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-SMA,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-SMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-SMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-STOCH,function,STOCH,Yes,API function name (Stochastic)
+Technical Indicators-STOCH,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-STOCH,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-STOCH,fastkperiod,14,No,Fast K period (default: 14)
+Technical Indicators-STOCH,slowkperiod,5,No,Slow K period (default: 5)
+Technical Indicators-STOCH,slowdperiod,5,No,Slow D period (default: 5)
+Technical Indicators-STOCH,slowkmaType,0,No,Slow K MA type 0-8 (default: 0)
+Technical Indicators-STOCH,slowdmaType,0,No,Slow D MA type 0-8 (default: 0)
+Technical Indicators-STOCH,datatype,json,No,json or csv (default: json)
+Technical Indicators-STOCH,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-STOCHF,function,STOCHF,Yes,API function name (Stochastic Fast)
+Technical Indicators-STOCHF,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-STOCHF,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-STOCHF,fastkperiod,5,No,Fast K period (default: 5)
+Technical Indicators-STOCHF,fastdperiod,3,No,Fast D period (default: 3)
+Technical Indicators-STOCHF,fastdmatype,0,No,Fast D MA type 0-8 (default: 0)
+Technical Indicators-STOCHF,datatype,json,No,json or csv (default: json)
+Technical Indicators-STOCHF,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-STOCHRSI,function,STOCHRSI,Yes,API function name (Stochastic Relative Strength Index)
+Technical Indicators-STOCHRSI,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-STOCHRSI,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-STOCHRSI,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-STOCHRSI,series_type,close,Yes,close, open, high, low
+Technical Indicators-STOCHRSI,fastkperiod,5,No,Fast K period (default: 5)
+Technical Indicators-STOCHRSI,fastdperiod,3,No,Fast D period (default: 3)
+Technical Indicators-STOCHRSI,fastdmatype,0,No,Fast D MA type 0-8 (default: 0)
+Technical Indicators-STOCHRSI,datatype,json,No,json or csv (default: json)
+Technical Indicators-STOCHRSI,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-TEMA,function,TEMA,Yes,API function name (Triple Exponential Moving Average)
+Technical Indicators-TEMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-TEMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-TEMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-TEMA,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-TEMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-TEMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-TRANGE,function,TRANGE,Yes,API function name (True Range)
+Technical Indicators-TRANGE,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-TRANGE,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-TRANGE,datatype,json,No,json or csv (default: json)
+Technical Indicators-TRANGE,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-TRIMA,function,TRIMA,Yes,API function name (Triangular Exponential Moving Average)
+Technical Indicators-TRIMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-TRIMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-TRIMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-TRIMA,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-TRIMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-TRIMA,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-TRIX,function,TRIX,Yes,API function name (1-day Rate-Of-Change)
+Technical Indicators-TRIX,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-TRIX,interval,daily,Yes,daily (required for TRIX)
+Technical Indicators-TRIX,series_type,close,Yes,close
+Technical Indicators-TRIX,time_period,30,No,Number of data points (default: 30)
+Technical Indicators-TRIX,datatype,json,No,json or csv (default: json)
+Technical Indicators-TRIX,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-ULTOSC,function,ULTOSC,Yes,API function name (Ultimate Oscillator)
+Technical Indicators-ULTOSC,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-ULTOSC,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-ULTOSC,time_period1,7,No,Period 1 (default: 7)
+Technical Indicators-ULTOSC,time_period2,14,No,Period 2 (default: 14)
+Technical Indicators-ULTOSC,time_period3,28,No,Period 3 (default: 28)
+Technical Indicators-ULTOSC,datatype,json,No,json or csv (default: json)
+Technical Indicators-ULTOSC,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-WILLR,function,WILLR,Yes,API function name (Williams %R)
+Technical Indicators-WILLR,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-WILLR,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-WILLR,time_period,14,Yes,Number of data points (e.g., 14)
+Technical Indicators-WILLR,datatype,json,No,json or csv (default: json)
+Technical Indicators-WILLR,apikey,DEMO,No,API key (handled by proxy)
+Technical Indicators-WMA,function,WMA,Yes,API function name (Weighted Moving Average)
+Technical Indicators-WMA,symbol,AAPL,Yes,Stock symbol
+Technical Indicators-WMA,interval,weekly,Yes,1min, 5min, 15min, 30min, 60min, daily, weekly, monthly
+Technical Indicators-WMA,series_type,close,Yes,close, open, high, low
+Technical Indicators-WMA,time_period,20,Yes,Number of data points (e.g., 20)
+Technical Indicators-WMA,datatype,json,No,json or csv (default: json)
+Technical Indicators-WMA,apikey,DEMO,No,API key (handled by proxy)
+CSV Only-EARNINGS_CALENDAR,function,EARNINGS_CALENDAR,Yes,API function name
+CSV Only-EARNINGS_CALENDAR,symbol,AAPL,No,Stock symbol (optional, returns all if omitted)
+CSV Only-EARNINGS_CALENDAR,horizon,3month,No,3month, 6month, or 12month (default: 3month)
+CSV Only-EARNINGS_CALENDAR,apikey,DEMO,No,API key (handled by proxy)
+CSV Only-LISTING_STATUS,function,LISTING_STATUS,Yes,API function name
+CSV Only-LISTING_STATUS,symbol,AAPL,No,Stock symbol (optional)
+CSV Only-LISTING_STATUS,date,2026-04-09,No,Filter by date (YYYY-MM-DD)
+CSV Only-LISTING_STATUS,state,active,No,active or delisted
+CSV Only-LISTING_STATUS,apikey,DEMO,No,API key (handled by proxy)
+CSV Only-IPO_CALENDAR,function,IPO_CALENDAR,Yes,API function name
+CSV Only-IPO_CALENDAR,apikey,DEMO,No,API key (handled by proxy)
