@@ -1,0 +1,79 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Deploy to droplet
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@${{ secrets.SSH_HOST }} << 'ENDSSH'
+            set -e
+            echo "=== Creating deployment directory ==="
+            mkdir -p /opt/loading-alphavantage
+
+            echo "=== Stopping existing container ==="
+            cd /opt/loading-alphavantage
+            docker-compose down 2>/dev/null || true
+
+            echo "=== Cleaning old image ==="
+            docker rmi alpha-vantage-api:latest 2>/dev/null || true
+          ENDSSH
+
+          echo "=== Copying files to droplet ==="
+          scp -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no \
+            Dockerfile docker-compose.yml next.config.js \
+            package.json package-lock.json \
+            app/ \
+            public/ 2>/dev/null \
+            root@${{ secrets.SSH_HOST }}:/opt/loading-alphavantage/
+
+          echo "=== Building and starting container ==="
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@${{ secrets.SSH_HOST }} << 'ENDSSH'
+            set -e
+            cd /opt/loading-alphavantage
+
+            echo "=== Building Docker image (this may take a few minutes) ==="
+            docker build -t alpha-vantage-api:latest .
+
+            echo "=== Starting service ==="
+            docker-compose up -d
+
+            echo "=== Container Status ==="
+            docker-compose ps
+          ENDSSH
+
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@${{ secrets.SSH_HOST }} << 'ENDSSH'
+            echo "=== Waiting for container to start ==="
+            sleep 15
+
+            echo "=== Container Status ==="
+            docker ps --filter name=loading-alphavantage
+
+            echo ""
+            echo "=== Health Check ==="
+            curl -s http://localhost:3000/api/health || echo "Health check endpoint not responding"
+
+            echo ""
+            echo "=== Container Logs (last 20 lines) ==="
+            docker logs --tail 20 loading-alphavantage 2>&1
+          ENDSSH
