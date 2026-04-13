@@ -5,7 +5,7 @@ const config = {
   baseUrl: "https://www.alphavantage.co/query",
   apiKey: process.env.ALPHA_VANTAGE_IPO_KEY ?? "",
   functionName: "IPO_CALENDAR",
-  requiredColumns: ["symbol", "reportedDate"],
+  requiredColumns: ["symbol", "ipoDate"],
 };
 
 if (!config.apiKey) {
