@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  alpha-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: alpha-vantage-proxy:latest
+    container_name: alpha-proxy
+    restart: unless-stopped
+    # Use host network to reach Tor on host at 127.0.0.1:9050/9051
+    network_mode: host
+    volumes:
+      # Mount decrypted keys.json from host secrets directory
+      - /opt/loading-alphavantage/secrets/alpha-vantage-pool.json:/app/keys.json:ro
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

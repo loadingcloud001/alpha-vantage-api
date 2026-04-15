@@ -1,0 +1,148 @@
+name: Deploy Alpha Proxy (Docker)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'alpha-proxy/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Step 1: Decrypt the key pool
+      - name: Decrypt Alpha Vantage key pool
+        env:
+          AGE_KEY: ${{ secrets.DEV_STANDARDS_AGE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          # Write the AGE identity key from secrets
+          printf '%s\n' "$AGE_KEY" > ~/.dev-standards-key
+          chmod 600 ~/.dev-standards-key
+          # Decrypt the key pool
+          age -d -i ~/.dev-standards-key -o /tmp/alpha-vantage-pool.json .secrets/alpha-vantage-pool.age
+          echo "=== Decrypted key pool ==="
+          cat /tmp/alpha-vantage-pool.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(f'Keys count: {len(d[\"keys\"])}')"
+
+      # Step 2: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Step 3: Set up SSH for remote deployment
+      - name: Set up SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      # Step 4: Copy alpha-proxy source + keys.json to droplet
+      - name: Prepare deployment files
+        run: |
+          # Create a clean deployment directory
+          mkdir -p /tmp/alpha-proxy-deploy
+
+          # Copy alpha-proxy source (exclude .git, node_modules)
+          rsync -az \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='app' \
+            --exclude='docs' \
+            --exclude='lib' \
+            --exclude='.env.local' \
+            --exclude='.worktrees' \
+            ./alpha-proxy/ /tmp/alpha-proxy-deploy/alpha-proxy/
+
+          # Copy the decrypted keys.json into the deployment
+          cp /tmp/alpha-vantage-pool.json /tmp/alpha-proxy-deploy/alpha-proxy/keys.json
+
+          echo "=== Deployment package ==="
+          find /tmp/alpha-proxy-deploy -type f | head -20
+
+      # Step 5: Copy files to droplet via SSH
+      - name: Copy files to droplet
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          rsync -az -e "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=no" \
+            /tmp/alpha-proxy-deploy/ \
+            root@$SSH_HOST:/opt/loading-alphavantage/alpha-proxy/
+
+          echo "=== Files on droplet ==="
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@$SSH_HOST "ls -la /opt/loading-alphavantage/alpha-proxy/"
+
+      # Step 6: Build and start Docker container on droplet
+      - name: Build and start Docker container
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@$SSH_HOST << 'ENDSSH'
+            set -e
+            cd /opt/loading-alphavantage/alpha-proxy
+
+            echo "=== Verifying keys.json ==="
+            python3 -c "import json; d=json.load(open('keys.json')); print(f'Keys: {len(d[\"keys\"])}')"
+
+            echo "=== Building Docker image ==="
+            docker build -t alpha-vantage-proxy:latest .
+
+            echo "=== Stopping existing container (if any) ==="
+            docker stop alpha-proxy 2>/dev/null || true
+            docker rm alpha-proxy 2>/dev/null || true
+
+            echo "=== Starting new container ==="
+            # Run with host network to reach Tor on host at 127.0.0.1:9050/9051
+            docker run -d \
+              --name alpha-proxy \
+              --restart unless-stopped \
+              --network=host \
+              --volume /opt/loading-alphavantage/alpha-proxy/keys.json:/app/keys.json:ro \
+              --memory=512m \
+              --cpus=0.5 \
+              --log-driver json-file \
+              --log-opt max-size=10m \
+              --log-opt max-file=3 \
+              alpha-vantage-proxy:latest
+
+            echo "=== Container status ==="
+            docker ps | grep alpha-proxy || echo "Container not running!"
+
+            echo "=== Waiting for startup ==="
+            sleep 5
+
+            echo "=== Health check ==="
+            curl -s --max-time 10 http://localhost:3000/health || echo "Health check failed"
+
+            echo "=== Container logs ==="
+            docker logs alpha-proxy --tail 20
+          ENDSSH
+
+      # Step 7: Verify deployment end-to-end
+      - name: Verify deployment
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes root@$SSH_HOST << 'ENDSSH'
+            echo "=== Container still running? ==="
+            docker ps | grep alpha-proxy
+
+            echo "=== Health endpoint ==="
+            curl -s http://localhost:3000/health
+
+            echo ""
+            echo "=== Testing GLOBAL_QUOTE ==="
+            curl -s "http://localhost:3000/v1/query?function=GLOBAL_QUOTE&symbol=IBM" | python3 -c "import sys,json; d=json.load(sys.stdin); print(list(d.keys()))" 2>/dev/null || echo "GLOBAL_QUOTE test failed or returned error"
+
+            echo ""
+            echo "=== Docker container logs ==="
+            docker logs alpha-proxy --tail 10
+          ENDSSH
