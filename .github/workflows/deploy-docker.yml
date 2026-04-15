@@ -15,6 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Step 0: Install age
+      - name: Install age
+        run: |
+          sudo apt-get update && sudo apt-get install -y age
+
       # Step 1: Decrypt the key pool
       - name: Decrypt Alpha Vantage key pool
         env:
