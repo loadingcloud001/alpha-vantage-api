@@ -20,6 +20,11 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y age
 
+      # Step 0b: Clone dev-standards to get secrets
+      - name: Clone dev-standards for secrets
+        run: |
+          git clone https://github.com/loadingcloud001/dev-standards.git /tmp/dev-standards
+
       # Step 1: Decrypt the key pool
       - name: Decrypt Alpha Vantage key pool
         env:
@@ -29,8 +34,8 @@ jobs:
           # Write the AGE identity key from secrets
           printf '%s\n' "$AGE_KEY" > ~/.dev-standards-key
           chmod 600 ~/.dev-standards-key
-          # Decrypt the key pool
-          age -d -i ~/.dev-standards-key -o /tmp/alpha-vantage-pool.json .secrets/alpha-vantage-pool.age
+          # Decrypt the key pool (from dev-standards .secrets/)
+          age -d -i ~/.dev-standards-key -o /tmp/alpha-vantage-pool.json /tmp/dev-standards/.secrets/alpha-vantage-pool.age
           echo "=== Decrypted key pool ==="
           cat /tmp/alpha-vantage-pool.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(f'Keys count: {len(d[\"keys\"])}')"
 
