@@ -15,29 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Step 0: Install age
-      - name: Install age
-        run: |
-          sudo apt-get update && sudo apt-get install -y age
-
-      # Step 0b: Clone dev-standards to get secrets
-      - name: Clone dev-standards for secrets
-        run: |
-          git clone https://github.com/loadingcloud001/dev-standards.git /tmp/dev-standards
-
-      # Step 1: Decrypt the key pool
-      - name: Decrypt Alpha Vantage key pool
+      # Step 1: Write the keys.json from secret directly
+      - name: Write Alpha Vantage keys.json
         env:
-          AGE_KEY: ${{ secrets.DEV_STANDARDS_AGE_KEY }}
+          ALPHA_VANTAGE_KEYS: ${{ secrets.ALPHA_VANTAGE_KEYS }}
         run: |
-          mkdir -p ~/.ssh
-          # Write the AGE identity key from secrets
-          printf '%s\n' "$AGE_KEY" > ~/.dev-standards-key
-          chmod 600 ~/.dev-standards-key
-          # Decrypt the key pool (from dev-standards .secrets/)
-          age -d -i ~/.dev-standards-key -o /tmp/alpha-vantage-pool.json /tmp/dev-standards/.secrets/alpha-vantage-pool.age
-          echo "=== Decrypted key pool ==="
-          cat /tmp/alpha-vantage-pool.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(f'Keys count: {len(d[\"keys\"])}')"
+          echo "$ALPHA_VANTAGE_KEYS" > /tmp/alpha-vantage-pool.json
+          echo "=== Keys count ==="
+          cat /tmp/alpha-vantage-pool.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(f'Keys: {len(d)}')"
 
       # Step 2: Set up Docker Buildx
       - name: Set up Docker Buildx
@@ -57,7 +42,6 @@ jobs:
       # Step 4: Copy alpha-proxy source + keys.json to droplet
       - name: Prepare deployment files
         run: |
-          # Create a clean deployment directory
           mkdir -p /tmp/alpha-proxy-deploy
 
           # Copy alpha-proxy source (exclude .git, node_modules)
@@ -72,7 +56,7 @@ jobs:
             --exclude='.worktrees' \
             ./alpha-proxy/ /tmp/alpha-proxy-deploy/alpha-proxy/
 
-          # Copy the decrypted keys.json into the deployment
+          # Copy the keys into the deployment
           cp /tmp/alpha-vantage-pool.json /tmp/alpha-proxy-deploy/alpha-proxy/keys.json
 
           echo "=== Deployment package ==="
@@ -100,7 +84,7 @@ jobs:
             cd /opt/loading-alphavantage/alpha-proxy
 
             echo "=== Verifying keys.json ==="
-            python3 -c "import json; d=json.load(open('keys.json')); print(f'Keys: {len(d[\"keys\"])}')"
+            python3 -c "import json; d=json.load(open('keys.json')); print(f'Keys: {len(d)}')"
 
             echo "=== Building Docker image ==="
             docker build -t alpha-vantage-proxy:latest .
