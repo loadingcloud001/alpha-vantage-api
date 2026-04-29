@@ -1,5 +1,7 @@
 # Alpha Vantage API Explorer
 
+> **DEPRECATED** — This project is no longer maintained. Services have been stopped (2026-04-29) and the repository is archived. No further updates will be made.
+
 Next.js app for exploring the [Alpha Vantage](https://www.alphavantage.co/) financial data API.
 
 ## Tech Stack
